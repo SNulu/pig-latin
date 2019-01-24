@@ -23,8 +23,15 @@ function pigLatin(input){
 
 $(document).ready(function(){
   $("form#transportation_survey").submit(function(event){
-      var input = $("#phrase").val().split('');
-      var input = pigLatin(input);
+      var input = $("#phrase").val();
+      if(input.includes(" ")){
+        input = input.split(" ");
+        input = input.map(function(inp){
+           return pigLatin(inp.split(''));
+        })
+        input = input.join(" ");
+      }else{
+      input = pigLatin(input.split(''));}
     console.log(input);
     event.preventDefault();
     });
